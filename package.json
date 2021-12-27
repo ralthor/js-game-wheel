@@ -1,0 +1,17 @@
+{
+  "name": "test1",
+  "version": "1.0.0",
+  "description": "",
+  "main": "gameobjects.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "dat.gui": "^0.7.7",
+    "parcel": "^2.0.1",
+    "three": "^0.136.0"
+  }
+}
