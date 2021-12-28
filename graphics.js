@@ -14,13 +14,20 @@ export class Graphics {
     }
 
     createLight() {
-        this.light1 = new THREE.DirectionalLight(0xffffff, 1);
-        this.light1.position.set(-4, 1.9, 16);
+        this.light1 = new THREE.DirectionalLight(0xffaaaa, 0.5);
+        this.light1.position.set(-4, 1.9, 14);
         this.scene.add(this.light1);
+
+        this.light2 = new THREE.DirectionalLight(0xaaffaa, 0.5);
+        this.light2.position.set(-1, 1.9, 14);
+        this.scene.add(this.light2);
+
+        this.light3 = new THREE.DirectionalLight(0xaaaaff, 0.5);
+        this.light3.position.set(3, 1.9, 14);
+        this.scene.add(this.light3);
 
         this.ambientLight = new THREE.AmbientLight(0x909090);
         this.scene.add(this.ambientLight);
-
     }
 
     createCamera() {
