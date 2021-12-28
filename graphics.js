@@ -39,6 +39,11 @@ export class Graphics {
     }
 
     createRenderer() {
+        this.skyBoxGeometry = new THREE.SphereGeometry(100, 100, 100);
+        this.skyBoxMaterial = new THREE.MeshBasicMaterial({ color: 0x9999ff, side: THREE.BackSide });
+        this.skyBox = new THREE.Mesh(this.skyBoxGeometry, this.skyBoxMaterial);
+        this.scene.add(this.skyBox);
+
         this.renderer = new THREE.WebGLRenderer();
         this.renderer.setSize(this.sizes.width, this.sizes.height);
         this.renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
