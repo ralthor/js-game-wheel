@@ -17,6 +17,10 @@ export class Graphics {
         this.light1 = new THREE.DirectionalLight(0xffffff, 1);
         this.light1.position.set(-4, 1.9, 16);
         this.scene.add(this.light1);
+
+        this.ambientLight = new THREE.AmbientLight(0x909090);
+        this.scene.add(this.ambientLight);
+
     }
 
     createCamera() {
