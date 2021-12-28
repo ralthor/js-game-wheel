@@ -50,3 +50,28 @@ export class Earth extends GameObject {
         return this.cube;
     }
 }
+
+export class Bar extends GameObject {
+    constructor(name, x) {
+        super(name);
+
+        this.geometry = new THREE.BoxGeometry(0.35, 6.3, 2.2);
+        this.material = new THREE.MeshStandardMaterial({ color: 0xccaa44 });
+        this.cube = new THREE.Mesh(this.geometry, this.material);
+        this.cube.position.set(x, 0.9, -0.2);
+
+        this.speed = {
+            x: -0.001
+        };
+    }
+
+    object() {
+        return this.cube;
+    }
+
+    tick(frameTime) {
+        this.cube.position.x += this.speed.x * 1000 * frameTime;
+        if (this.cube.position.x < -17.5)
+            this.cube.position.x = 17.5;
+    }
+}
