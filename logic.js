@@ -1,40 +1,30 @@
 import { GameObject } from "./objects";
-import { Cube, Earth, Bar } from "./objects";
-
-const GameState = {
-    Start: "Game Start",
-    GameOver: "Game Over",
-    Running: "Game Running"
-};
+import { GameState, BeforeStart, Running } from "./gamephase";
 
 export class Logic extends GameObject {
     constructor(name, coreObject, graphicsObject) {
         super(name);
         this.core = coreObject;
-        this.graphic = graphicsObject;
+        this.graphics = graphicsObject;
+        this.availablePhase = {
+            [GameState.Start]: new BeforeStart(GameState.Start, this.core, this.graphics),
+            [GameState.Running]: new Running(GameState.Running, this.core, this.graphics)
+        }
         this.startRunning()
     }
 
     startRunning() {
-        this.state = GameState.Running;
-
-        let earth = new Earth("Earth");
-        this.graphic.scene.add(earth.object());
-
-        let cube = new Cube("cube 1");
-        this.graphic.scene.add(cube.object());
-
-        this.core.addObject(cube);
-
-        for (let i = 0; i < 8; i++) {
-            let bar = new Bar("bar " + i, 15 + i * 5);
-            this.graphic.scene.add(bar.object());
-            this.core.addObject(bar);
-        }
-
+        this.state = GameState.Start;
+        this.phase = this.availablePhase[GameState.Start];
+        this.phase.changeTo();
     }
 
     tick() {
-
+        let nextPhase = this.phase.tick();
+        if (nextPhase) {
+            this.phase.release();
+            this.phase = this.availablePhase[nextPhase];
+            this.phase.changeTo();
+        }
     }
 }
