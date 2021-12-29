@@ -21,6 +21,10 @@ export class Cube extends GameObject {
         this.cube.position.set(0.3, 1, 0);
 
         this.speed = {
+            x: 0,
+            y: 0
+        };
+        this.rotation = {
             x: 0.001,
             y: 0.0014
         };
@@ -31,8 +35,11 @@ export class Cube extends GameObject {
     }
 
     tick(frameTime) {
-        this.cube.rotation.x += this.speed.x * 1000 * frameTime;
-        this.cube.rotation.y += this.speed.y * 1000 * frameTime;
+        this.cube.rotation.x += this.rotation.x * 1000 * frameTime;
+        this.cube.rotation.y += this.rotation.y * 1000 * frameTime;
+        console.log(this.speed.y);
+        this.speed.y += 1.9 * frameTime;
+        this.cube.position.y -= this.speed.y * frameTime;
     }
 }
 export class Earth extends GameObject {

@@ -1,5 +1,6 @@
 import { GameObject } from "./objects";
-import { GameState, BeforeStart, Running } from "./gamephase";
+import { GameState, BeforeStart } from "./gamephase";
+import { Running } from "./running-phase";
 
 export class Logic extends GameObject {
     constructor(name, coreObject, graphicsObject) {
